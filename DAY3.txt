@@ -1,0 +1,68 @@
+1.how to compare two JSON have the same properties without order?
+A. let obj1={name:"person 1,age:5"};
+b. let obj2={name:"person 2,age:5"};
+
+
+
+ let obj1={name:"person 1,age:5"};
+ let obj2={name:"person 2,age:5"};
+
+function CompareJSON(obj1, obj2) {
+let string1 = JSON.stringify(obj 1);
+let string2 = JSON.stringify(obj 2);
+
+return string1 === string2;
+}
+console.log(compareJSON(obj1, obj));
+------------------------------------------------------------------------------------------------------------
+
+
+
+2.use the rest countries' API URL https://restcountries.com/v3.1/all and display all the country flag in 
+the console
+
+fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    
+    data.forEach(country => {
+      const flagUrl = country.flags.svg;
+      const flagImage = document.createElement('img');
+      flagImage.src = flagUrl;
+      document.body.appendChild(flagImage);
+    });
+  })
+  .catch(error => console.error('Error fetching data:', error));
+------------------------------------------------------------------------------------------------------------------------------------
+3.use the same rest countries and print and print all the countries name,regions,sub-regions and 
+populations in javascript.
+
+async function fetchCountriesData() {
+  const response = await fetch("https://restcountries.com/v3.1/all");
+  const data = await response.json();
+  return data;
+}
+
+
+function printCountryData(country) {
+  console.log("Country: " + country.name.common);
+  console.log("Region: " + country.region);
+  console.log("Sub-region: " + country.subregion);
+  console.log("Population: " + country.population);
+  console.log("=============================");
+}
+
+
+async function main() {
+  try {
+    const countriesData = await fetchCountriesData();
+    countriesData.forEach(country => {
+      printCountryData(country);
+    });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+
+main();
